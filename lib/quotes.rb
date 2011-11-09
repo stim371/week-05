@@ -31,8 +31,6 @@ class Quotes
     end
   end
   
-  #self.missing_quote = "Could not find a quote at this time"
-  
   def initialize params
     @file   = params[:file]  
     @quotes = File.exists?(@file) ? File.readlines(@file).map { |quote| quote.strip } : []
