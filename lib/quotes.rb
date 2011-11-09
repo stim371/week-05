@@ -21,17 +21,21 @@ class Quotes
     
   class << self
     attr_accessor :missing_quote
+    
+    def missing_quote
+      @missing_quote || "Could not find a quote at this time"
+    end
+    
+    def load filename
+      self.new(:file => filename)
+    end
   end
   
-  self.missing_quote = "Could not find a quote at this time"
+  #self.missing_quote = "Could not find a quote at this time"
   
   def initialize params
     @file   = params[:file]  
     @quotes = File.exists?(@file) ? File.readlines(@file).map { |quote| quote.strip } : []
-  end
-  
-  def self.load filename
-    Quotes.new(:file => filename)
   end
   
   def find line_number
@@ -49,9 +53,6 @@ class Quotes
     regexhash = {:start_with => /^#{val}/, :include => /#{val}/, :end_with => /#{val}$/}
 
     myregex = Regexp.new(regexhash[crit])
-    # myregex = Regexp.new(/^#{val}/) if crit == :start_with
-    # myregex = Regexp.new(/#{val}/) if crit == :include
-    # myregex = Regexp.new(/#{val}$/) if crit == :end_with
     myregex
   end
   

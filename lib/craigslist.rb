@@ -3,7 +3,7 @@ require 'craigler'
 results = Craigler.search(:computers_and_tech, :in => [:seattle], :for => 'Mac')
 
 result = results.first
-
+#puts "#{result}"
 puts "#{result[:title]} #{result[:url]}"
 
 
@@ -12,7 +12,7 @@ puts "#{result[:title]} #{result[:url]}"
 # 
 # require 'ostruct'
 # result_object = OpenStruct.new result
-# puts "#{result_object.title} #{result_object.url}"
+# puts "#{result_object.title} \n#{result_object.url}"
 
 
 
@@ -23,5 +23,6 @@ puts "#{result[:title]} #{result[:url]}"
 # 
 # require 'hashie'
 # result_object = Hashie::Mash.new result
+# puts result_object.class
 # puts "#{result_object.title} #{result_object.url}"
 # 
